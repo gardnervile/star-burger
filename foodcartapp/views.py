@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import json
 
-from .models import Product
+from .models import Product, OrderItem, Order
 
 
 def banners_list_api(request):
@@ -66,8 +66,22 @@ def register_order(request):
 
     try:
         data = json.loads(request.body.decode())
-        print("Полученные данные:", data)
     except json.JSONDecodeError:
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    
+    order = Order.objects.create(
+            client=data['firstname'],
+            phonenumber=data['phonenumber'],
+            address=data['address']
+    )
+
+    for item in data['products']:
+        product = Product.objects.get(id=item['product'])  # ← можно обернуть в try позже
+        OrderItem.objects.create(
+            order=order,
+            product=product,
+            quantity=item['quantity']
+        )
 
     return JsonResponse({'status': 'ok'})
+
