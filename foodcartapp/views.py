@@ -6,6 +6,10 @@ import json
 
 from .models import Product, OrderItem, Order
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
 
 def banners_list_api(request):
     # FIXME move data to db?
@@ -59,29 +63,23 @@ def product_list_api(request):
     })
 
 
-@csrf_exempt
+@api_view(['POST'])
 def register_order(request):
-    if request.method != 'POST':
-        return JsonResponse({'error': 'Only POST allowed'}, status=405)
+    data = request.data
 
-    try:
-        data = json.loads(request.body.decode())
-    except json.JSONDecodeError:
-        return JsonResponse({'error': 'Invalid JSON'}, status=400)
-    
     order = Order.objects.create(
-            client=data['firstname'],
-            phonenumber=data['phonenumber'],
-            address=data['address']
+        client=data['firstname'],
+        phonenumber=data['phonenumber'],
+        address=data['address']
     )
 
     for item in data['products']:
-        product = Product.objects.get(id=item['product'])  # ← можно обернуть в try позже
+        product = Product.objects.get(id=item['product'])
         OrderItem.objects.create(
             order=order,
             product=product,
             quantity=item['quantity']
         )
 
-    return JsonResponse({'status': 'ok'})
+    return Response({'status': 'ok'}, status=status.HTTP_200_OK)
 
