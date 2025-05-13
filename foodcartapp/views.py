@@ -9,6 +9,7 @@ from .models import Product, OrderItem, Order
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.utils.serializer_helpers import ReturnDict
 
 
 def banners_list_api(request):
@@ -66,6 +67,20 @@ def product_list_api(request):
 @api_view(['POST'])
 def register_order(request):
     data = request.data
+
+    if 'products' not in data:
+        return Response({'products': 'Обязательное поле.'}, status=400)
+
+    if data['products'] is None:
+        return Response ({'products': 'Это поле не может быть пустым.'}, status=400)
+    
+    if not isinstance(data['products'], list):
+        actual_type = type(data['products']).__name__
+        return Response({'products': f'Ожидался list со значениями, но был получен "{actual_type}".'}, status=400)
+
+    if not data['products']:
+        return Response({'products': 'Этот список не может быть пустым.'}, status=400)
+   
 
     order = Order.objects.create(
         client=data['firstname'],
