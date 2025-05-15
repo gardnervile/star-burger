@@ -114,7 +114,8 @@ class OrderItemInLine(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = [
-        'client',
+        'firstname',
+        'lastname',
         'phonenumber',
         'address',
         'created_at',
@@ -125,7 +126,8 @@ class OrderAdmin(admin.ModelAdmin):
         'created_at'
     ]
     search_fields = [
-        'client', 
+        'firstname',
+        'lastname', 
         'phonenumber', 
         'address'
     ]
