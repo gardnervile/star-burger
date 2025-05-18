@@ -10,9 +10,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.utils.serializer_helpers import ReturnDict
+from rest_framework import serializers
 
 import phonenumbers
-
+from phonenumber_field.serializerfields import PhoneNumberField
 
 def banners_list_api(request):
     # FIXME move data to db?
@@ -66,80 +67,33 @@ def product_list_api(request):
     })
 
 
+class OrderItemSerializer(serializers.Serializer):
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    quantity = serializers.IntegerField(min_value=1)
+
+
+class OrderSerializer(serializers.Serializer):
+    firstname = serializers.CharField()
+    lastname = serializers.CharField()
+    phonenumber = PhoneNumberField()
+    address = serializers.CharField()
+    products = OrderItemSerializer(many=True, allow_empty=False)
+
+    def create(self, validated_data):
+        products_data = validated_data.pop('products')
+        order = Order.objects.create(**validated_data)
+        for item in products_data:
+            OrderItem.objects.create(
+                order=order,
+                product=item['product'],
+                quantity=item['quantity']
+            )
+        return order
+    
+
 @api_view(['POST'])
 def register_order(request):
-    data = request.data
-    errors = {}
-
-    # === Проверка полей заказа ===
-    for field in ['firstname', 'lastname', 'phonenumber', 'address']:
-        if field not in data:
-            errors[field] = 'Обязательное поле.'
-        elif data[field] is None or data[field] == '':
-            errors[field] = 'Это поле не может быть пустым.'
-        elif not isinstance(data[field], str):
-            errors[field] = 'Недопустимый тип. Ожидалась строка.'
-
-    # === Проверка поля products ===
-    if 'products' not in data:
-        errors['products'] = 'Обязательное поле.'
-    elif data['products'] is None:
-        errors['products'] = 'Это поле не может быть пустым.'
-    elif not isinstance(data['products'], list):
-        actual_type = type(data['products']).__name__
-        errors['products'] = f'Ожидался list со значениями, но был получен "{actual_type}".'
-    elif not data['products']:
-        errors['products'] = 'Этот список не может быть пустым.'
-
-    # === Остановиться, если уже есть ошибки ===
-    if errors:
-        return Response(errors, status=400)
-
-    # === Проверка каждого элемента products ===
-    order_items = []
-    for index, item in enumerate(data['products']):
-        if not isinstance(item, dict):
-            return Response({'products': f'Элемент №{index + 1} должен быть словарём.'}, status=400)
-
-        if 'product' not in item:
-            return Response({'products': f'В элементе №{index + 1} отсутствует ключ "product".'}, status=400)
-
-        if 'quantity' not in item:
-            return Response({'products': f'В элементе №{index + 1} отсутствует ключ "quantity".'}, status=400)
-
-        # Проверка quantity
-        quantity = item['quantity']
-        if not isinstance(quantity, int) or quantity <= 0:
-            return Response({'products': f'quantity должен быть положительным числом в элементе №{index + 1}.'}, status=400)
-
-        # Проверка, существует ли продукт
-        try:
-            product = Product.objects.get(id=item['product'])
-        except Product.DoesNotExist:
-            return Response({'products': f'Недопустимый первичный ключ "{item["product"]}"'}, status=400)
-
-        order_items.append({'product': product, 'quantity': quantity})
-
-        try:
-            phone_obj = phonenumbers.parse(data['phonenumber'], None)
-            if not phonenumbers.is_valid_number(phone_obj):
-                return Response({'phonenumber': 'Введен некорректный номер телефона.'}, status=400)
-        except phonenumbers.NumberParseException:
-            return Response({'phonenumber': 'Введен некорректный номер телефона.'}, status=400)
-
-    # === Всё ок — создаём заказ и позиции ===
-    order = Order.objects.create(
-        firstname=data['firstname'],
-        lastname=data['lastname'],
-        phonenumber=data['phonenumber'],
-        address=data['address']
-    )
-
-    for item in order_items:
-        OrderItem.objects.create(
-            order=order,
-            product=item['product'],
-            quantity=item['quantity']
-        )
-
-    return Response({'status': 'ok'}, status=200)
+    serializer = OrderSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response({'status': 'ok'})
