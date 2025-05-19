@@ -77,8 +77,8 @@ class OrderSerializer(serializers.Serializer):
     lastname = serializers.CharField()
     phonenumber = PhoneNumberField()
     address = serializers.CharField()
-    products = OrderItemSerializer(many=True, allow_empty=False)
-
+    products = OrderItemSerializer(many=True, allow_empty=False, write_only=True)
+    items = OrderItemSerializer(source='item.all', many=True, read_only=True)
     def create(self, validated_data):
         products_data = validated_data.pop('products')
         order = Order.objects.create(**validated_data)
@@ -95,5 +95,6 @@ class OrderSerializer(serializers.Serializer):
 def register_order(request):
     serializer = OrderSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
-    serializer.save()
-    return Response({'status': 'ok'})
+    order = serializer.save()
+    response_data = OrderSerializer(order).data
+    return Response(response_data)
