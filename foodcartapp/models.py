@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
-
+from decimal import Decimal
 
 class Restaurant(models.Model):
     name = models.CharField(
@@ -166,7 +166,13 @@ class OrderItem(models.Model):
         related_name='items', 
         verbose_name='Заказ'
     )
-
+    price = models.DecimalField(
+        validators=[MinValueValidator(Decimal('0.00'))],          null=False,
+        blank=False,
+        verbose_name='Цена',
+        max_digits=8,
+        decimal_places=2
+    )
     def __str__(self):
         return f'{self.product.name} × {self.quantity} (заказ #{self.order.id})'
 

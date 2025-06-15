@@ -16,6 +16,9 @@ from rest_framework import serializers
 import phonenumbers
 from phonenumber_field.serializerfields import PhoneNumberField
 
+from decimal import Decimal
+
+
 def banners_list_api(request):
     # FIXME move data to db?
     return JsonResponse([
@@ -83,11 +86,12 @@ class OrderSerializer(serializers.Serializer):
     def create(self, validated_data):
         products_data = validated_data.pop('products')
         order = Order.objects.create(**validated_data)
-        for item in products_data:
+        for product_data in products_data:
             OrderItem.objects.create(
                 order=order,
-                product=item['product'],
-                quantity=item['quantity']
+                product=product_data['product'],
+                quantity=product_data['quantity'],
+                price=Decimal(product_data['product'].price)
             )
         return order
     
@@ -99,3 +103,4 @@ def register_order(request):
     order = serializer.save()
     response_data = OrderSerializer(order).data
     return Response(response_data)
+
