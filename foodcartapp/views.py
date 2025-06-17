@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.templatetags.static import static
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-
+from django.db import transaction
 import json
 
 from .models import Product, OrderItem, Order
@@ -83,16 +83,20 @@ class OrderSerializer(serializers.Serializer):
     address = serializers.CharField()
     products = OrderItemSerializer(many=True, allow_empty=False, write_only=True)
     items = OrderItemSerializer(source='item.all', many=True, read_only=True)
+    
     def create(self, validated_data):
         products_data = validated_data.pop('products')
-        order = Order.objects.create(**validated_data)
-        for product_data in products_data:
-            OrderItem.objects.create(
-                order=order,
-                product=product_data['product'],
-                quantity=product_data['quantity'],
-                price=Decimal(product_data['product'].price)
-            )
+        
+        with transaction.atomic():
+            order = Order.objects.create(**validated_data)
+
+            for product_data in products_data:
+                OrderItem.objects.create(
+                    order=order,
+                    product=product_data['product'],
+                    quantity=product_data['quantity'],
+                    price=Decimal(product_data['product'].price)
+                )
         return order
     
 
