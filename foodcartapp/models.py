@@ -131,14 +131,15 @@ class Order(models.Model):
     address = models.CharField(max_length=255, verbose_name='Адрес')
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата заказа')
     STATUS_CHOISES = [
-        ('new', 'Новый'),
-        ('processing', 'В обработке'),
-        ('delivered', 'Доставлен'),
+        ('Новый', 'Новый'),
+        ('В сборке', 'В сборке'),
+        ('Доставляется', 'Доставляется'),
+        ('Готов', 'Готов'),
     ]
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOISES,
-        default='new',
+        default='Новый',
         verbose_name='Статус'
     )
 
