@@ -130,6 +130,7 @@ class Order(models.Model):
     phonenumber = PhoneNumberField(verbose_name='Номер телефона')
     address = models.CharField(max_length=255, verbose_name='Адрес')
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата заказа')
+    comment = models.CharField(verbose_name='Комментарий', null=True, blank=True)
     STATUS_CHOISES = [
         ('Новый', 'Новый'),
         ('В сборке', 'В сборке'),

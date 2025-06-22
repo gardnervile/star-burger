@@ -120,6 +120,7 @@ class OrderAdmin(admin.ModelAdmin):
         'lastname',
         'phonenumber',
         'address',
+        'comment',
         'created_at',
         'status',
     ]
