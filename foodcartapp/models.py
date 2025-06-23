@@ -129,7 +129,9 @@ class Order(models.Model):
     lastname = models.CharField(max_length=150, verbose_name='Фамилия')
     phonenumber = PhoneNumberField(verbose_name='Номер телефона')
     address = models.CharField(max_length=255, verbose_name='Адрес')
-    created_at = models.DateField(auto_now_add=True, verbose_name='Дата заказа')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата заказа')
+    called_at = models.DateTimeField(auto_now_add=False, verbose_name='Дата звонка', null=True, blank=True)
+    delivered_at = models.DateTimeField(auto_now_add=False, verbose_name='Дата доставка', null=True, blank=True)
     comment = models.CharField(verbose_name='Комментарий', null=True, blank=True)
     STATUS_CHOISES = [
         ('Новый', 'Новый'),

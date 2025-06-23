@@ -115,13 +115,15 @@ class OrderItemInLine(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = [
+    fields = [
         'firstname',
         'lastname',
         'phonenumber',
         'address',
         'comment',
         'created_at',
+        'called_at',
+        'delivered_at',
         'status',
     ]
     list_filter = [
@@ -135,6 +137,7 @@ class OrderAdmin(admin.ModelAdmin):
         'address'
     ]
     inlines = [OrderItemInLine]
+    readonly_fields = ['created_at']
 
     def response_change(self, request, obj):
         res = super().response_post_save_change(request, obj)
