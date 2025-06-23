@@ -133,6 +133,15 @@ class Order(models.Model):
     called_at = models.DateTimeField(auto_now_add=False, verbose_name='Дата звонка', null=True, blank=True)
     delivered_at = models.DateTimeField(auto_now_add=False, verbose_name='Дата доставка', null=True, blank=True)
     comment = models.CharField(verbose_name='Комментарий', null=True, blank=True)
+    payment_method = models.CharField(
+        max_length=15,
+        choices=[
+            ('Наличные', 'Наличные'),
+            ('Электронно', 'Электронно')
+        ],
+        default='Наличные',
+        verbose_name='Способ оплаты',
+        )
     STATUS_CHOISES = [
         ('Новый', 'Новый'),
         ('В сборке', 'В сборке'),
