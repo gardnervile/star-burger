@@ -126,6 +126,7 @@ class OrderAdmin(admin.ModelAdmin):
         'called_at',
         'delivered_at',
         'status',
+        'restaurant',
     ]
     list_filter = [
         'status', 
@@ -150,3 +151,8 @@ class OrderAdmin(admin.ModelAdmin):
             return redirect(next_url)
         else:
             return res
+        
+    def save_model(self, request, obj, form, change):
+        if obj.restaurant and obj.status == 'В сборке':
+            obj.status = 'Готовится'
+        super().save_model(request, obj, form, change)

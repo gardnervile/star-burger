@@ -145,6 +145,7 @@ class Order(models.Model):
     STATUS_CHOISES = [
         ('Новый', 'Новый'),
         ('В сборке', 'В сборке'),
+        ('Готовится', 'Готовится'),
         ('Доставляется', 'Доставляется'),
         ('Готов', 'Готов'),
     ]
@@ -153,6 +154,14 @@ class Order(models.Model):
         choices=STATUS_CHOISES,
         default='Новый',
         verbose_name='Статус'
+    )
+    restaurant = models.ForeignKey(
+        'Restaurant',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='orders',
+        verbose_name='Ресторан, готовящий заказ'
     )
 
     def __str__(self):
