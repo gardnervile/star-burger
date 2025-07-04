@@ -10,7 +10,10 @@ from django.contrib.auth import views as auth_views
 from collections import defaultdict
 
 from foodcartapp.models import Product, Restaurant, Order, RestaurantMenuItem
-
+import requests
+from django.conf import settings
+from requests.exceptions import RequestException
+from geopy.distance import distance
 
 class Login(forms.Form):
     username = forms.CharField(
@@ -99,7 +102,10 @@ def view_orders(request):
     product_to_restaurants = defaultdict(set)
     for item in menu_items:
         product_to_restaurants[item.product_id].add(item.restaurant)
-
+    restaurant_locations = {
+        restaurant.id: fetch_coordinates(restaurant.address)
+        for restaurant in Restaurant.objects.all()
+    }
     orders_with_possible_restaurants = []
     for order in orders:
         restaurants_sets = [
@@ -113,8 +119,68 @@ def view_orders(request):
         else:
             common_restaurants = set()
 
-        order.restaurants = common_restaurants
+    orders_with_possible_restaurants = []
+
+    for order in orders:
+        restaurants_sets = [
+            product_to_restaurants[item.product.id]
+            for item in order.items.all()
+            if item.product.id in product_to_restaurants
+        ]
+
+        if restaurants_sets:
+            common_restaurants = set.intersection(*restaurants_sets)
+        else:
+            common_restaurants = set()
+
+        order_location = fetch_coordinates(order.address)
+        if not order_location:
+            order.restaurants = []
+            orders_with_possible_restaurants.append(order)
+            continue
+
+        distances = []
+        for restaurant in common_restaurants:
+            rest_coords = restaurant_locations.get(restaurant.id)
+            if rest_coords:
+                dist = get_distance_km(order_location, rest_coords)
+                distances.append((restaurant, dist))
+
+        distances.sort(key=lambda x: x[1])
+        order.restaurants = [r for r, d in distances]
+        order.distances = distances
         orders_with_possible_restaurants.append(order)
+
+    orders_with_possible_restaurants.append(order)
     return render(request, template_name='order_items.html', context={
         'order_items': orders_with_possible_restaurants
     })
+
+YA_GEOCODER_API_KEY = settings.YA_GEOCODER_API_KEY
+
+def fetch_coordinates(address):
+    base_url = 'https://geocode-maps.yandex.ru/1.x/'
+    try:
+        response = requests.get(base_url, params={
+            'geocode': address,
+            'apikey': YA_GEOCODER_API_KEY,
+            'format': 'json',
+        })
+        response.raise_for_status()
+    except RequestException:
+        return None
+
+    try:
+        found_places = response.json()['response']['GeoObjectCollection']['featureMember']
+        if not found_places:
+            return None
+
+        most_relevant = found_places[0]
+        point = most_relevant['GeoObject']['Point']['pos']
+        longitude, latitude = map(float, point.split())
+        return latitude, longitude  
+    except (KeyError, ValueError, IndexError):
+        return None
+    
+def get_distance_km(from_coords, to_coords):
+    return round(distance(from_coords, to_coords).km, 2)
