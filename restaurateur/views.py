@@ -8,7 +8,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import views as auth_views
 
 from collections import defaultdict
-
+from geolocation.models import Place
+from django.utils.timezone import now
+from datetime import timedelta
 from foodcartapp.models import Product, Restaurant, Order, RestaurantMenuItem
 import requests
 from django.conf import settings
@@ -96,7 +98,7 @@ def view_restaurants(request):
 
 @user_passes_test(is_manager, login_url='restaurateur:login')
 def view_orders(request):
-    orders = Order.objects.exclude(status='Готов')
+    orders = Order.objects.exclude(status='Готов').prefetch_related('items__product')
     menu_items = RestaurantMenuItem.objects.select_related('restaurant', 'product').filter(availability=True)
 
     product_to_restaurants = defaultdict(set)
@@ -110,7 +112,7 @@ def view_orders(request):
     for order in orders:
         restaurants_sets = [
             product_to_restaurants[item.product.id]
-            for item in order.items.all()
+            for item in order.items
             if item.product.id in product_to_restaurants
         ]
 
@@ -156,14 +158,26 @@ def view_orders(request):
         'order_items': orders_with_possible_restaurants
     })
 
+
 YA_GEOCODER_API_KEY = settings.YA_GEOCODER_API_KEY
 
+
+def get_distance_km(point1, point2):
+    return distance(point1, point2).km
+
+
 def fetch_coordinates(address):
-    base_url = 'https://geocode-maps.yandex.ru/1.x/'
     try:
-        response = requests.get(base_url, params={
+        place = Place.objects.get(address=address)
+        if now() - place.updated_at < timedelta(days=30):
+            return (place.latitude, place.longitude)
+    except Place.DoesNotExist:
+        place = None
+
+    try:
+        response = requests.get('https://geocode-maps.yandex.ru/1.x/', params={
             'geocode': address,
-            'apikey': YA_GEOCODER_API_KEY,
+            'apikey': settings.YA_GEOCODER_API_KEY,
             'format': 'json',
         })
         response.raise_for_status()
@@ -175,12 +189,26 @@ def fetch_coordinates(address):
         if not found_places:
             return None
 
-        most_relevant = found_places[0]
-        point = most_relevant['GeoObject']['Point']['pos']
+        point = found_places[0]['GeoObject']['Point']['pos']
         longitude, latitude = map(float, point.split())
-        return latitude, longitude  
+        coords = (latitude, longitude)
     except (KeyError, ValueError, IndexError):
         return None
-    
-def get_distance_km(from_coords, to_coords):
-    return round(distance(from_coords, to_coords).km, 2)
+
+    if coords:
+        latitude, longitude = coords
+        if place:
+            place.latitude = latitude
+            place.longitude = longitude
+            place.updated_at = now()
+            place.save()
+        else:
+            Place.objects.create(
+                address=address,
+                latitude=latitude,
+                longitude=longitude,
+                updated_at=now()
+            )
+        return coords
+
+    return None
