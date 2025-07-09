@@ -1,30 +1,29 @@
 from rest_framework import serializers
+from foodcartapp.models import Order, OrderItem, Product
 from phonenumber_field.serializerfields import PhoneNumberField
 from decimal import Decimal
 from django.db import transaction
 
-from .models import Order, OrderItem, Product
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ['product', 'quantity']
 
 
-class OrderItemSerializer(serializers.Serializer):
-    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    quantity = serializers.IntegerField(min_value=1)
-
-
-class OrderSerializer(serializers.Serializer):
-    firstname = serializers.CharField()
-    lastname = serializers.CharField()
+class OrderSerializer(serializers.ModelSerializer):
     phonenumber = PhoneNumberField()
-    address = serializers.CharField()
-    products = OrderItemSerializer(many=True, allow_empty=False, write_only=True)
-    items = OrderItemSerializer(source='item.all', many=True, read_only=True)
-    
+    products = OrderItemSerializer(many=True, write_only=True)
+    items = OrderItemSerializer(source='items', many=True, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ['firstname', 'lastname', 'phonenumber', 'address', 'products', 'items']
+
     def create(self, validated_data):
         products_data = validated_data.pop('products')
-        
         with transaction.atomic():
             order = Order.objects.create(**validated_data)
-
             for product_data in products_data:
                 OrderItem.objects.create(
                     order=order,
@@ -33,4 +32,3 @@ class OrderSerializer(serializers.Serializer):
                     price=Decimal(product_data['product'].price)
                 )
         return order
-    
