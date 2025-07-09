@@ -6,17 +6,12 @@ from django.db import transaction
 import json
 
 from .models import Product, OrderItem, Order
+from .serializers import OrderSerializer
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.utils.serializer_helpers import ReturnDict
-from rest_framework import serializers
-
-import phonenumbers
-from phonenumber_field.serializerfields import PhoneNumberField
-
-from decimal import Decimal
 
 
 def banners_list_api(request):
@@ -70,35 +65,6 @@ def product_list_api(request):
         'indent': 4,
     })
 
-
-class OrderItemSerializer(serializers.Serializer):
-    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    quantity = serializers.IntegerField(min_value=1)
-
-
-class OrderSerializer(serializers.Serializer):
-    firstname = serializers.CharField()
-    lastname = serializers.CharField()
-    phonenumber = PhoneNumberField()
-    address = serializers.CharField()
-    products = OrderItemSerializer(many=True, allow_empty=False, write_only=True)
-    items = OrderItemSerializer(source='item.all', many=True, read_only=True)
-    
-    def create(self, validated_data):
-        products_data = validated_data.pop('products')
-        
-        with transaction.atomic():
-            order = Order.objects.create(**validated_data)
-
-            for product_data in products_data:
-                OrderItem.objects.create(
-                    order=order,
-                    product=product_data['product'],
-                    quantity=product_data['quantity'],
-                    price=Decimal(product_data['product'].price)
-                )
-        return order
-    
 
 @api_view(['POST'])
 def register_order(request):

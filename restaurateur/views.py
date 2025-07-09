@@ -112,7 +112,7 @@ def view_orders(request):
     for order in orders:
         restaurants_sets = [
             product_to_restaurants[item.product.id]
-            for item in order.items
+            for item in order.items.all()
             if item.product.id in product_to_restaurants
         ]
 
