@@ -16,6 +16,7 @@ import requests
 from django.conf import settings
 from requests.exceptions import RequestException
 from geopy.distance import distance
+from .geocoder import fetch_coordinates_from_yandex
 
 class Login(forms.Form):
     username = forms.CharField(
@@ -169,46 +170,20 @@ def get_distance_km(point1, point2):
 def fetch_coordinates(address):
     try:
         place = Place.objects.get(address=address)
-        if now() - place.updated_at < timedelta(days=30):
+
+        if place.latitude and place.longitude and now() - place.updated_at < timedelta(days=30):
             return (place.latitude, place.longitude)
+
     except Place.DoesNotExist:
-        place = None
+        place = Place.objects.create(address=address)
 
-    try:
-        response = requests.get('https://geocode-maps.yandex.ru/1.x/', params={
-            'geocode': address,
-            'apikey': settings.YA_GEOCODER_API_KEY,
-            'format': 'json',
-        })
-        response.raise_for_status()
-    except RequestException:
-        return None
-
-    try:
-        found_places = response.json()['response']['GeoObjectCollection']['featureMember']
-        if not found_places:
-            return None
-
-        point = found_places[0]['GeoObject']['Point']['pos']
-        longitude, latitude = map(float, point.split())
-        coords = (latitude, longitude)
-    except (KeyError, ValueError, IndexError):
-        return None
+    coords = fetch_coordinates_from_yandex(address)
 
     if coords:
         latitude, longitude = coords
-        if place:
-            place.latitude = latitude
-            place.longitude = longitude
-            place.updated_at = now()
-            place.save()
-        else:
-            Place.objects.create(
-                address=address,
-                latitude=latitude,
-                longitude=longitude,
-                updated_at=now()
-            )
-        return coords
+        place.latitude = latitude
+        place.longitude = longitude
 
-    return None
+    place.updated_at = now()
+    place.save()
+    return coords
