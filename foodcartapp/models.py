@@ -132,7 +132,7 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата заказа')
     called_at = models.DateTimeField(auto_now_add=False, verbose_name='Дата звонка', null=True, blank=True)
     delivered_at = models.DateTimeField(auto_now_add=False, verbose_name='Дата доставка', null=True, blank=True)
-    comment = models.CharField(verbose_name='Комментарий', null=True, blank=True)
+    comment = models.CharField(verbose_name='Комментарий', blank=True)
     payment_method = models.CharField(
         max_length=15,
         choices=[
@@ -180,7 +180,8 @@ class OrderItem(models.Model):
         on_delete=models.CASCADE
     )
     quantity = models.PositiveIntegerField(
-        verbose_name='Количество'
+        verbose_name='Количество',
+        validators=[MinValueValidator(1)]
     )
     order = models.ForeignKey(
         Order, 
@@ -189,7 +190,8 @@ class OrderItem(models.Model):
         verbose_name='Заказ'
     )
     price = models.DecimalField(
-        validators=[MinValueValidator(Decimal('0.00'))],          null=False,
+        validators=[MinValueValidator(Decimal('0.00'))],
+        null=False,
         blank=False,
         verbose_name='Цена',
         max_digits=8,
