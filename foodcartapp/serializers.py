@@ -24,11 +24,15 @@ class OrderSerializer(serializers.ModelSerializer):
         products_data = validated_data.pop('products')
         with transaction.atomic():
             order = Order.objects.create(**validated_data)
-            for product_data in products_data:
-                OrderItem.objects.create(
-                    order=order,
-                    product=product_data['product'],
-                    quantity=product_data['quantity'],
-                    price=Decimal(product_data['product'].price)
-                )
+            items = [
+                OrderItem(
+                order=order,
+                product=product_data['product'],
+                quantity=product_data['quantity'],
+                price=Decimal(product_data['product'].price)
+            )
+            for product_data in products_data
+        ]
+            OrderItem.objects.bulk_create(items)
+        
         return order
