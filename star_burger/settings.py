@@ -3,6 +3,8 @@ import os
 import dj_database_url
 
 from environs import Env
+import rollbar
+import rollbar.contrib.django.middleware.RollbarNotifierMiddleware as RollbarMiddleware
 
 
 env = Env()
@@ -10,6 +12,15 @@ env.read_env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+ROLLBAR = {
+    'access_token': env('ROLLBAR_TOKEN', default=None),
+    'environment': env('ROLLBAR_ENVIRONMENT', default='development'),
+    'root': BASE_DIR,
+}
+
+if ROLLBAR['access_token']:
+    rollbar.init(**ROLLBAR)
 
 YA_GEOCODER_API_KEY = os.getenv('YA_GEOCODER_API_KEY')
 
@@ -42,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'star_burger.urls'
