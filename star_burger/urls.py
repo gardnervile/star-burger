@@ -34,3 +34,10 @@ if settings.DEBUG:
     urlpatterns = [
         path(r'__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
+
+
+from django.http import HttpResponse
+
+def test_rollbar(request):
+    1 / 0  # Вызовет ошибку
+    return HttpResponse("This should never be seen")

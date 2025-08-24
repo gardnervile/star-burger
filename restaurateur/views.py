@@ -187,10 +187,3 @@ def fetch_coordinates(address):
     place.updated_at = now()
     place.save()
     return coords
-
-
-from django.http import HttpResponse
-
-def test_error(request):
-    1 / 0
-    return HttpResponse("Вы это не увидите.")
