@@ -18,10 +18,3 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name="login"),
     path('logout/', views.LogoutView.as_view(), name="logout"),
 ]
-from django.urls import path
-from restaurateur.views import test_error  # путь подстрой под своё приложение
-
-urlpatterns = [
-    # другие маршруты
-    path('test-error/', test_error),
-]

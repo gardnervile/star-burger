@@ -187,3 +187,9 @@ def fetch_coordinates(address):
     place.updated_at = now()
     place.save()
     return coords
+
+from django.http import HttpResponse
+
+def test_rollbar(request):
+    1 / 0  # Вызовет ошибку
+    return HttpResponse("This should never be seen")
