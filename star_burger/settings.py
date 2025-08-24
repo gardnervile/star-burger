@@ -4,7 +4,6 @@ import dj_database_url
 
 from environs import Env
 import rollbar
-import rollbar.contrib.django.middleware.RollbarNotifierMiddleware as RollbarMiddleware
 
 
 env = Env()
