@@ -1,0 +1,1562 @@
+[
+{
+  "model": "foodcartapp.restaurant",
+  "pk": 1,
+  "fields": {
+    "name": "Star Burger Арбат",
+    "address": "Москва, ул. Новый Арбат, 15",
+    "contact_phone": "+7 (967) 157-44-13"
+  }
+},
+{
+  "model": "foodcartapp.restaurant",
+  "pk": 2,
+  "fields": {
+    "name": "Star Burger Цветной",
+    "address": "Москва, Цветной бульвар, 11с2",
+    "contact_phone": "+7 (929) 949-55-36"
+  }
+},
+{
+  "model": "foodcartapp.restaurant",
+  "pk": 3,
+  "fields": {
+    "name": "Star Burger Европейский",
+    "address": "Москва, пл. Киевского Вокзала, 2",
+    "contact_phone": "+7 (929) 680-47-58"
+  }
+},
+{
+  "model": "foodcartapp.productcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Бургер"
+  }
+},
+{
+  "model": "foodcartapp.productcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Ролл"
+  }
+},
+{
+  "model": "foodcartapp.product",
+  "pk": 1,
+  "fields": {
+    "name": "Стейкхаус",
+    "category": 1,
+    "price": "289.00",
+    "image": "steak.jpg",
+    "special_status": false,
+    "description": ""
+  }
+},
+{
+  "model": "foodcartapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "Лонг Чизбургер",
+    "category": 1,
+    "price": "219.00",
+    "image": "long_chiz.jpg",
+    "special_status": false,
+    "description": ""
+  }
+},
+{
+  "model": "foodcartapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "Тройной Воппер",
+    "category": 1,
+    "price": "369.00",
+    "image": "triple_vopper.jpg",
+    "special_status": false,
+    "description": ""
+  }
+},
+{
+  "model": "foodcartapp.product",
+  "pk": 4,
+  "fields": {
+    "name": "Фиш Ролл",
+    "category": 2,
+    "price": "199.00",
+    "image": "fish_roll.jpg",
+    "special_status": false,
+    "description": ""
+  }
+},
+{
+  "model": "foodcartapp.product",
+  "pk": 5,
+  "fields": {
+    "name": "Шримп Ролл",
+    "category": 2,
+    "price": "209.00",
+    "image": "shrimp_roll.jpg",
+    "special_status": false,
+    "description": ""
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 1,
+  "fields": {
+    "restaurant": 3,
+    "product": 1,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 2,
+  "fields": {
+    "restaurant": 3,
+    "product": 2,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 3,
+  "fields": {
+    "restaurant": 3,
+    "product": 5,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 4,
+  "fields": {
+    "restaurant": 3,
+    "product": 3,
+    "availability": false
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 5,
+  "fields": {
+    "restaurant": 3,
+    "product": 4,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 6,
+  "fields": {
+    "restaurant": 2,
+    "product": 1,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 7,
+  "fields": {
+    "restaurant": 2,
+    "product": 2,
+    "availability": false
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 8,
+  "fields": {
+    "restaurant": 2,
+    "product": 3,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 9,
+  "fields": {
+    "restaurant": 2,
+    "product": 4,
+    "availability": false
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 10,
+  "fields": {
+    "restaurant": 2,
+    "product": 5,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 11,
+  "fields": {
+    "restaurant": 1,
+    "product": 1,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 12,
+  "fields": {
+    "restaurant": 1,
+    "product": 2,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 13,
+  "fields": {
+    "restaurant": 1,
+    "product": 3,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 14,
+  "fields": {
+    "restaurant": 1,
+    "product": 4,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.restaurantmenuitem",
+  "pk": 15,
+  "fields": {
+    "restaurant": 1,
+    "product": 5,
+    "availability": true
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 1,
+  "fields": {
+    "firstname": "f",
+    "lastname": "Иванов",
+    "phonenumber": "94444444444",
+    "address": "ffff",
+    "created_at": "2025-05-08T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 2,
+  "fields": {
+    "firstname": "Иван",
+    "lastname": "Иванов",
+    "phonenumber": "+79001234567",
+    "address": "Москва",
+    "created_at": "2025-05-12T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 3,
+  "fields": {
+    "firstname": "f",
+    "lastname": "Иванов",
+    "phonenumber": "+79019019099",
+    "address": "dd",
+    "created_at": "2025-05-12T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 4,
+  "fields": {
+    "firstname": "j",
+    "lastname": "Иванов",
+    "phonenumber": "+79019019099",
+    "address": "f",
+    "created_at": "2025-05-13T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 5,
+  "fields": {
+    "firstname": "Тимур",
+    "lastname": "Иванов",
+    "phonenumber": "+70000000000",
+    "address": "Москва, Новый Арбат 10",
+    "created_at": "2025-05-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 6,
+  "fields": {
+    "firstname": "Тимур",
+    "lastname": "Иванов",
+    "phonenumber": "+70000000000",
+    "address": "Москва, Новый Арбат 10",
+    "created_at": "2025-05-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 7,
+  "fields": {
+    "firstname": "Тимур",
+    "lastname": "Иванов",
+    "phonenumber": "+79213239146",
+    "address": "Москва, Новый Арбат 10",
+    "created_at": "2025-05-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 8,
+  "fields": {
+    "firstname": "а",
+    "lastname": "а",
+    "phonenumber": "+79213239117",
+    "address": "а",
+    "created_at": "2025-05-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 9,
+  "fields": {
+    "firstname": "df",
+    "lastname": "df",
+    "phonenumber": "+79013454565",
+    "address": "f",
+    "created_at": "2025-05-18T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 10,
+  "fields": {
+    "firstname": "f",
+    "lastname": "f",
+    "phonenumber": "+79325674573",
+    "address": "f",
+    "created_at": "2025-05-19T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 11,
+  "fields": {
+    "firstname": "f",
+    "lastname": "f",
+    "phonenumber": "+79215674573",
+    "address": "f",
+    "created_at": "2025-05-19T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 12,
+  "fields": {
+    "firstname": "gg",
+    "lastname": "f",
+    "phonenumber": "+79213239146",
+    "address": "f",
+    "created_at": "2025-05-19T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 13,
+  "fields": {
+    "firstname": "Василий",
+    "lastname": "Васильевич",
+    "phonenumber": "+79123456789",
+    "address": "Лондон",
+    "created_at": "2025-05-19T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 14,
+  "fields": {
+    "firstname": "лл",
+    "lastname": "ппп",
+    "phonenumber": "+79213239146",
+    "address": "иа",
+    "created_at": "2025-06-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": " ",
+    "payment_method": "Наличные",
+    "status": "Новый",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 15,
+  "fields": {
+    "firstname": "вдал",
+    "lastname": "влалл",
+    "phonenumber": "+79213239146",
+    "address": "аапка",
+    "created_at": "2025-06-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 16,
+  "fields": {
+    "firstname": "вдал",
+    "lastname": "влалл",
+    "phonenumber": "+79213239146",
+    "address": "аапка",
+    "created_at": "2025-06-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 17,
+  "fields": {
+    "firstname": "вдала",
+    "lastname": "влалл",
+    "phonenumber": "+79213239146",
+    "address": "аапка",
+    "created_at": "2025-06-15T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "new",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 18,
+  "fields": {
+    "firstname": "ваf",
+    "lastname": "вп",
+    "phonenumber": "+79213239146",
+    "address": "впап",
+    "created_at": "2025-06-17T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "0",
+    "payment_method": "Наличные",
+    "status": "Готов",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 19,
+  "fields": {
+    "firstname": "вва",
+    "lastname": "аваа",
+    "phonenumber": "+79213239146",
+    "address": "аава",
+    "created_at": "2025-06-21T00:00:00Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": "без лука",
+    "payment_method": "Наличные",
+    "status": "Новый",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 20,
+  "fields": {
+    "firstname": "dgd",
+    "lastname": "dfdf",
+    "phonenumber": "+79213233223",
+    "address": "fdf",
+    "created_at": "2025-06-23T15:36:59.571Z",
+    "called_at": null,
+    "delivered_at": null,
+    "comment": " ",
+    "payment_method": "Наличные",
+    "status": "Готовится",
+    "restaurant": 1
+  }
+},
+{
+  "model": "foodcartapp.order",
+  "pk": 21,
+  "fields": {
+    "firstname": "уауа",
+    "lastname": "впап",
+    "phonenumber": "+79322322323",
+    "address": "Москва, Арбатская 3",
+    "created_at": "2025-06-23T15:40:51.381Z",
+    "called_at": "2025-06-23T15:46:33Z",
+    "delivered_at": null,
+    "comment": " ",
+    "payment_method": "Электронно",
+    "status": "Новый",
+    "restaurant": null
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 1,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 1,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "quantity": 2,
+    "order": 2,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 3,
+  "fields": {
+    "product": 5,
+    "quantity": 1,
+    "order": 2,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 4,
+  "fields": {
+    "product": 3,
+    "quantity": 1,
+    "order": 3,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 4,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 6,
+  "fields": {
+    "product": 1,
+    "quantity": 1,
+    "order": 5,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 7,
+  "fields": {
+    "product": 1,
+    "quantity": 1,
+    "order": 6,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 8,
+  "fields": {
+    "product": 1,
+    "quantity": 1,
+    "order": 7,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 9,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 8,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 10,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 9,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 11,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 10,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 12,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 11,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 13,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 12,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 14,
+  "fields": {
+    "product": 1,
+    "quantity": 1,
+    "order": 13,
+    "price": "100.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 15,
+  "fields": {
+    "product": 1,
+    "quantity": 1,
+    "order": 17,
+    "price": "269.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 16,
+  "fields": {
+    "product": 1,
+    "quantity": 1,
+    "order": 18,
+    "price": "289.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 17,
+  "fields": {
+    "product": 1,
+    "quantity": 1,
+    "order": 19,
+    "price": "289.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 18,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 20,
+    "price": "219.00"
+  }
+},
+{
+  "model": "foodcartapp.orderitem",
+  "pk": 19,
+  "fields": {
+    "product": 2,
+    "quantity": 1,
+    "order": 21,
+    "price": "219.00"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-05-06T16:53:11.104Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "1",
+    "object_repr": "Star Burger Арбат",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-05-06T16:53:32.858Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "2",
+    "object_repr": "Star Burger Цветной",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-05-06T16:53:56.603Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "3",
+    "object_repr": "Star Burger Европейский",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-05-06T16:55:17.160Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "1",
+    "object_repr": "Бургер",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-05-06T16:57:39.967Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "1",
+    "object_repr": "Стейкхаус",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-05-06T16:58:17.196Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "2",
+    "object_repr": "Лонг Чизбургер",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-05-06T16:58:47.010Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "3",
+    "object_repr": "Тройной Воппер",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-05-06T16:59:00.004Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "2",
+    "object_repr": "Ролл",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-05-06T16:59:31.345Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "4",
+    "object_repr": "Фиш Ролл",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-05-06T17:00:13.103Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "5",
+    "object_repr": "Шримп Ролл",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-05-06T17:01:19.895Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "3",
+    "object_repr": "Star Burger Европейский",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0415\\u0432\\u0440\\u043e\\u043f\\u0435\\u0439\\u0441\\u043a\\u0438\\u0439 - \\u0421\\u0442\\u0435\\u0439\\u043a\\u0445\\u0430\\u0443\\u0441\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0415\\u0432\\u0440\\u043e\\u043f\\u0435\\u0439\\u0441\\u043a\\u0438\\u0439 - \\u041b\\u043e\\u043d\\u0433 \\u0427\\u0438\\u0437\\u0431\\u0443\\u0440\\u0433\\u0435\\u0440\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0415\\u0432\\u0440\\u043e\\u043f\\u0435\\u0439\\u0441\\u043a\\u0438\\u0439 - \\u0428\\u0440\\u0438\\u043c\\u043f \\u0420\\u043e\\u043b\\u043b\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0415\\u0432\\u0440\\u043e\\u043f\\u0435\\u0439\\u0441\\u043a\\u0438\\u0439 - \\u0422\\u0440\\u043e\\u0439\\u043d\\u043e\\u0439 \\u0412\\u043e\\u043f\\u043f\\u0435\\u0440\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0415\\u0432\\u0440\\u043e\\u043f\\u0435\\u0439\\u0441\\u043a\\u0438\\u0439 - \\u0424\\u0438\\u0448 \\u0420\\u043e\\u043b\\u043b\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-05-06T17:01:40.457Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "2",
+    "object_repr": "Star Burger Цветной",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0426\\u0432\\u0435\\u0442\\u043d\\u043e\\u0439 - \\u0421\\u0442\\u0435\\u0439\\u043a\\u0445\\u0430\\u0443\\u0441\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0426\\u0432\\u0435\\u0442\\u043d\\u043e\\u0439 - \\u041b\\u043e\\u043d\\u0433 \\u0427\\u0438\\u0437\\u0431\\u0443\\u0440\\u0433\\u0435\\u0440\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0426\\u0432\\u0435\\u0442\\u043d\\u043e\\u0439 - \\u0422\\u0440\\u043e\\u0439\\u043d\\u043e\\u0439 \\u0412\\u043e\\u043f\\u043f\\u0435\\u0440\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0426\\u0432\\u0435\\u0442\\u043d\\u043e\\u0439 - \\u0424\\u0438\\u0448 \\u0420\\u043e\\u043b\\u043b\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0426\\u0432\\u0435\\u0442\\u043d\\u043e\\u0439 - \\u0428\\u0440\\u0438\\u043c\\u043f \\u0420\\u043e\\u043b\\u043b\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-05-06T17:01:58.069Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "1",
+    "object_repr": "Star Burger Арбат",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0410\\u0440\\u0431\\u0430\\u0442 - \\u0421\\u0442\\u0435\\u0439\\u043a\\u0445\\u0430\\u0443\\u0441\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0410\\u0440\\u0431\\u0430\\u0442 - \\u041b\\u043e\\u043d\\u0433 \\u0427\\u0438\\u0437\\u0431\\u0443\\u0440\\u0433\\u0435\\u0440\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0410\\u0440\\u0431\\u0430\\u0442 - \\u0422\\u0440\\u043e\\u0439\\u043d\\u043e\\u0439 \\u0412\\u043e\\u043f\\u043f\\u0435\\u0440\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0410\\u0440\\u0431\\u0430\\u0442 - \\u0424\\u0438\\u0448 \\u0420\\u043e\\u043b\\u043b\"}}, {\"added\": {\"name\": \"\\u043f\\u0443\\u043d\\u043a\\u0442 \\u043c\\u0435\\u043d\\u044e \\u0440\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d\\u0430\", \"object\": \"Star Burger \\u0410\\u0440\\u0431\\u0430\\u0442 - \\u0428\\u0440\\u0438\\u043c\\u043f \\u0420\\u043e\\u043b\\u043b\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-06-15T15:15:44.596Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "1",
+    "object_repr": "Стейкхаус",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0426\\u0435\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-06-15T15:43:20.117Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "17",
+    "object_repr": "Заказ #17 — вдал влалл",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-06-15T15:43:29.819Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "17",
+    "object_repr": "Заказ #17 — вдала влалл",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0418\\u043c\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-06-20T15:19:05.909Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ва вп",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-06-20T15:19:17.241Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0418\\u043c\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-06-20T15:20:38.984Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-06-20T15:24:51.509Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-06-20T15:24:54.896Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-06-21T15:54:00.825Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-06-21T15:58:37.531Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-06-21T16:02:27.653Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-06-21T16:06:59.320Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "14",
+    "object_repr": "Заказ #14 — лл ппп",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-06-21T16:20:50.359Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Заказ #18 — ваf вп",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-06-22T14:53:22.379Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "19",
+    "object_repr": "Заказ #19 — вва аваа",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u043e\\u043c\\u043c\\u0435\\u043d\\u0442\\u0430\\u0440\\u0438\\u0439\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-06-22T14:53:50.998Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "19",
+    "object_repr": "Заказ #19 — вва аваа",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u043e\\u043c\\u043c\\u0435\\u043d\\u0442\\u0430\\u0440\\u0438\\u0439\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-06-22T14:58:31.742Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "14",
+    "object_repr": "Заказ #14 — лл ппп",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u043e\\u043c\\u043c\\u0435\\u043d\\u0442\\u0430\\u0440\\u0438\\u0439\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-06-23T15:37:08.902Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "19",
+    "object_repr": "Заказ #19 — вва аваа",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2025-06-23T15:40:15.421Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "20",
+    "object_repr": "Заказ #20 — dgd dfdf",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2025-06-23T15:46:36.266Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u0430\\u0442\\u0430 \\u0437\\u0432\\u043e\\u043d\\u043a\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2025-06-23T15:46:41.595Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2025-06-23T15:46:49.735Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2025-06-23T15:59:28.351Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2025-06-23T15:59:37.124Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043f\\u043e\\u0441\\u043e\\u0431 \\u043e\\u043f\\u043b\\u0430\\u0442\\u044b\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2025-07-02T14:20:27.764Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0420\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d, \\u0433\\u043e\\u0442\\u043e\\u0432\\u044f\\u0449\\u0438\\u0439 \\u0437\\u0430\\u043a\\u0430\\u0437\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2025-07-02T14:28:35.803Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2025-07-02T14:31:01.310Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2025-07-02T14:34:20.571Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2025-07-02T14:34:32.389Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "20",
+    "object_repr": "Заказ #20 — dgd dfdf",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\", \"\\u0420\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d, \\u0433\\u043e\\u0442\\u043e\\u0432\\u044f\\u0449\\u0438\\u0439 \\u0437\\u0430\\u043a\\u0430\\u0437\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2025-07-04T14:31:09.696Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0434\\u0440\\u0435\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2025-07-04T14:31:45.355Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\", \"\\u0420\\u0435\\u0441\\u0442\\u043e\\u0440\\u0430\\u043d, \\u0433\\u043e\\u0442\\u043e\\u0432\\u044f\\u0449\\u0438\\u0439 \\u0437\\u0430\\u043a\\u0430\\u0437\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2025-07-04T14:32:49.461Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0434\\u0440\\u0435\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2025-07-09T15:00:37.308Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "Заказ #21 — уауа впап",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$ey1qNc3m4xSNZhGF2x2e00$tjHmV7F7D2VZ6qnLS5w1o+BMU9g8d0Wu9lztXADPVYw=",
+    "last_login": "2025-07-02T13:12:35.644Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "lordy1jo@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-06T16:51:52.273Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "aoj17f00mrybz0c00z6htwh5wzeuacsq",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQRP-FsyG0RVk8eu83kGWXlaqBpLQn47_bJj3oZQ7z3sxbBVyXHNaW5jCxuqpOnX67iPRMZQf8wHKvmmpZ5inqXdEHbXqsnF63w_07yNjyth7IYQ8EYjq5eBAmS5yMQdiSujN79KYXN8TI4MWAsz4ZJ3YAK9KT-nwB_es4dg:1uEW5X:uVAYaCjCfuqRt8zqGKTx8vfsUcsqCKeGOhaHkHo8v-g",
+    "expire_date": "2025-05-26T16:33:11.506Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hlt4zfk2ld7clii4fxqopok6g4udqxso",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQRP-FsyG0RVk8eu83kGWXlaqBpLQn47_bJj3oZQ7z3sxbBVyXHNaW5jCxuqpOnX67iPRMZQf8wHKvmmpZ5inqXdEHbXqsnF63w_07yNjyth7IYQ8EYjq5eBAmS5yMQdiSujN79KYXN8TI4MWAsz4ZJ3YAK9KT-nwB_es4dg:1uOx9y:VOBF0A6qVKixboPwd4IS8RlO8dlquVnhl1t5exda-sw",
+    "expire_date": "2025-06-24T11:28:54.328Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ul7pfcnqptce1drtoqqk6sg6s32bhtg2",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQRP-FsyG0RVk8eu83kGWXlaqBpLQn47_bJj3oZQ7z3sxbBVyXHNaW5jCxuqpOnX67iPRMZQf8wHKvmmpZ5inqXdEHbXqsnF63w_07yNjyth7IYQ8EYjq5eBAmS5yMQdiSujN79KYXN8TI4MWAsz4ZJ3YAK9KT-nwB_es4dg:1uWxGN:LeBBEWVmnDVBzcrs8xgzfZI5zwYXA_amXC5yxYWMtUg",
+    "expire_date": "2025-07-16T13:12:35.656Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 1,
+  "fields": {
+    "address": "Москва, ул. Новый Арбат, 15",
+    "latitude": 55.751933,
+    "longitude": 37.593066,
+    "updated_at": "2025-07-04T15:06:07.035Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 2,
+  "fields": {
+    "address": "Москва, Цветной бульвар, 11с2",
+    "latitude": 55.770076,
+    "longitude": 37.620429,
+    "updated_at": "2025-07-04T15:06:07.290Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 3,
+  "fields": {
+    "address": "Москва, пл. Киевского Вокзала, 2",
+    "latitude": 55.744637,
+    "longitude": 37.566072,
+    "updated_at": "2025-07-04T15:06:07.616Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 4,
+  "fields": {
+    "address": "Москва, Арбатская 3",
+    "latitude": 55.751133,
+    "longitude": 37.59931,
+    "updated_at": "2025-07-04T15:06:07.956Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 5,
+  "fields": {
+    "address": "fdf",
+    "latitude": 14.59546,
+    "longitude": -61.000207,
+    "updated_at": "2025-07-04T15:09:43.003Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 6,
+  "fields": {
+    "address": "аава",
+    "latitude": 59.00782,
+    "longitude": 26.1154,
+    "updated_at": "2025-07-04T15:09:43.236Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 7,
+  "fields": {
+    "address": "иа",
+    "latitude": 62.569529,
+    "longitude": 10.460414,
+    "updated_at": "2025-07-04T15:09:43.512Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 8,
+  "fields": {
+    "address": "f",
+    "latitude": 33.691085,
+    "longitude": 73.006299,
+    "updated_at": "2025-07-04T15:09:44.620Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 9,
+  "fields": {
+    "address": "Лондон",
+    "latitude": 51.507351,
+    "longitude": -0.127696,
+    "updated_at": "2025-07-04T15:09:44.905Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 10,
+  "fields": {
+    "address": "Москва, Новый Арбат 10",
+    "latitude": 55.753154,
+    "longitude": 37.594045,
+    "updated_at": "2025-07-04T15:09:45.223Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 11,
+  "fields": {
+    "address": "а",
+    "latitude": 61.113427,
+    "longitude": 72.582114,
+    "updated_at": "2025-07-04T15:09:45.532Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 12,
+  "fields": {
+    "address": "Москва",
+    "latitude": 55.755864,
+    "longitude": 37.617698,
+    "updated_at": "2025-07-04T15:09:45.869Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 13,
+  "fields": {
+    "address": "dd",
+    "latitude": 14.724142,
+    "longitude": -17.460824,
+    "updated_at": "2025-07-04T15:09:46.170Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 14,
+  "fields": {
+    "address": "аапка",
+    "latitude": null,
+    "longitude": null,
+    "updated_at": "2025-07-10T15:54:38.159Z"
+  }
+},
+{
+  "model": "geolocation.place",
+  "pk": 15,
+  "fields": {
+    "address": "ffff",
+    "latitude": null,
+    "longitude": null,
+    "updated_at": "2025-07-10T15:54:38.422Z"
+  }
+}
+]
