@@ -59,12 +59,49 @@ pip install -r requirements.txt
 SECRET_KEY=django-insecure-0if40nf4nf93n4
 ```
 
-Создайте файл базы данных SQLite и отмигрируйте её следующей командой:
+Настройте PostgreSQL
+
+Создайте базу и пользователя:
+```
+CREATE DATABASE starburger;
+CREATE USER staruser WITH PASSWORD 'yourpassword';
+GRANT ALL PRIVILEGES ON DATABASE starburger TO staruser;
+```
+
+Настройте переменные окружения
+
+Создайте файл .env рядом с manage.py:
+```
+SECRET_KEY=django-insecure-...
+DEBUG=False
+ALLOWED_HOSTS=127.0.0.1,localhost,<ваш_ip>
+ROLLBAR_TOKEN=<ваш_token>
+ROLLBAR_ENVIRONMENT=production
+DATABASE_URL=postgresql://staruser:yourpassword@localhost:5432/starburger
+YA_GEOCODER_API_KEY=<ваш_api_key>
+```
+
+Примените миграции
 
 ```sh
 python manage.py migrate
 ```
 
+Перенос данных из SQLite (один раз при переходе)
+
+На старой версии (с SQLite):
+```
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes > data.json
+```
+
+На новой версии (с PostgreSQL):
+```
+python manage.py loaddata data.json
+```
+Соберите статику:
+```
+python manage.py collectstatic
+```
 Запустите сервер:
 
 ```sh
