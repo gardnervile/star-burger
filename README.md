@@ -3,7 +3,7 @@
 Это сайт сети ресторанов Star Burger. Здесь можно заказать превосходные бургеры с доставкой на дом.
 
 ![скриншот сайта](https://dvmn.org/filer/canonical/1594651635/686/)
-
+Ссылка: https://www.starburger.online
 
 Сеть Star Burger объединяет несколько ресторанов, действующих под единой франшизой. У всех ресторанов одинаковое меню и одинаковые цены. Просто выберите блюдо из меню на сайте и укажите место доставки. Мы сами найдём ближайший к вам ресторан, всё приготовим и привезём.
 
@@ -59,12 +59,49 @@ pip install -r requirements.txt
 SECRET_KEY=django-insecure-0if40nf4nf93n4
 ```
 
-Создайте файл базы данных SQLite и отмигрируйте её следующей командой:
+Настройте PostgreSQL
+
+Создайте базу и пользователя:
+```
+CREATE DATABASE starburger;
+CREATE USER staruser WITH PASSWORD 'yourpassword';
+GRANT ALL PRIVILEGES ON DATABASE starburger TO staruser;
+```
+
+Настройте переменные окружения
+
+Создайте файл .env рядом с manage.py:
+```
+SECRET_KEY=django-insecure-...
+DEBUG=False
+ALLOWED_HOSTS=127.0.0.1,localhost,<ваш_ip>
+ROLLBAR_TOKEN=<ваш_token>
+ROLLBAR_ENVIRONMENT=production
+DATABASE_URL=postgresql://staruser:yourpassword@localhost:5432/starburger
+YA_GEOCODER_API_KEY=<ваш_api_key>
+```
+
+Примените миграции
 
 ```sh
 python manage.py migrate
 ```
 
+Перенос данных из SQLite (один раз при переходе)
+
+На старой версии (с SQLite):
+```
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes > data.json
+```
+
+На новой версии (с PostgreSQL):
+```
+python manage.py loaddata data.json
+```
+Соберите статику:
+```
+python manage.py collectstatic
+```
 Запустите сервер:
 
 ```sh
@@ -147,6 +184,34 @@ Parcel будет следить за файлами в каталоге `bundle
 - `DEBUG` — дебаг-режим. Поставьте `False`.
 - `SECRET_KEY` — секретный ключ проекта. Он отвечает за шифрование на сайте. Например, им зашифрованы все пароли на вашем сайте.
 - `ALLOWED_HOSTS` — [см. документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
+
+
+## Деплой на сервер
+
+Для быстрого обновления кода на сервере используется bash-скрипт `deploy_star_burger.sh`.  
+
+Скрипт автоматически выполняет:
+
+- подтягивает изменения из GitHub
+- обновляет зависимости Python и Node.js
+- пересобирает фронтенд (Parcel)
+- собирает статику Django
+- накатывает миграции
+- перезапускает Gunicorn и Nginx
+
+### Подготовка
+1. На сервере файл `deploy_star_burger.sh` должен лежать в домашней директории (`~`).
+2. Сделать его исполняемым:
+   ```bash
+   chmod +x ~/deploy_star_burger.sh
+   ```
+### Использование
+
+После каждого коммита и git push запускайте:
+```
+~/deploy_star_burger.sh
+```
+
 
 ## Цели проекта
 
