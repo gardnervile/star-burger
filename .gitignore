@@ -143,3 +143,10 @@ dmypy.json
 cython_debug/
 
 .parcel-cache/
+
+data.json
+
+# Игнорировать собранную статику
+/staticfiles/
+
+/ystemctl stop starburger
