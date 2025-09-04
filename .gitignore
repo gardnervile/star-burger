@@ -149,4 +149,4 @@ data.json
 # Игнорировать собранную статику
 /staticfiles/
 
-/ystemctl stop starburger
+/ystemctl stop starburgerdeploy_star_burger.sh
