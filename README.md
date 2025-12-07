@@ -211,7 +211,104 @@ Parcel будет следить за файлами в каталоге `bundle
 ```
 ~/deploy_star_burger.sh
 ```
+# Star-Burger — Docker Deploy
 
+Проект полностью докеризован и поддерживает два режима запуска:
+- локальная разработка (dev)
+- продакшен (prod)
+
+---
+
+## Запуск в Docker (DEV)
+
+Dev-окружение использует runserver, отдельный Postgres и подключенные тома для media.
+
+### Запуск
+```
+docker compose up --build
+```
+После запуска:
+- Backend: http://localhost:8000/
+
+### Остановка
+```
+docker compose down
+```
+### Особенности DEV
+
+- Backend и Postgres работают в отдельных контейнерах
+- media подключен как volume и не удаляется при перезапуске
+- Django автоматические перезагружается при изменениях
+
+---
+
+## Продакшен Docker (PROD)
+
+Продакшен использует gunicorn + nginx.  
+Фронтенд собирается полностью внутри Dockerfile.frontend.
+
+### Запуск продакшена
+```
+docker compose -f docker-compose.prod.yml up --build
+```
+После запуска:
+- Nginx (статические файлы + media + API): http://localhost/
+
+### Остановка
+```
+docker compose -f docker-compose.prod.yml down
+```
+---
+
+## Файл окружения .env.prod
+
+Перед запуском prod создайте файл .env.prod:
+
+Пример содержимого:
+```
+DEBUG=False  
+SECRET_KEY=замени_на_ключ  
+ALLOWED_HOSTS=localhost,127.0.0.1  
+
+DB_ENGINE=django.db.backends.postgresql  
+DB_NAME=starburger  
+DB_USER=starburger  
+DB_PASSWORD=starburger  
+DB_HOST=db  
+DB_PORT=5432  
+```
+---
+
+## Структура контейнеров (prod)
+
+backend — Django + gunicorn  
+nginx — раздаёт фронтенд, статику и media  
+db — PostgreSQL  
+vol_media — persistent media storage  
+vol_db — persistent PostgreSQL storage  
+
+---
+
+## Скрипт деплоя
+
+В репозитории есть файл deploy.sh.
+
+Запуск:
+```
+./deploy.sh
+```
+Скрипт выполняет:
+- git pull
+- сборку Docker-образов
+- миграции Django
+- collectstatic
+- перезапуск контейнеров
+
+---
+
+## Репозиторий проекта
+
+https://github.com/gardnervile/star-burger
 
 ## Цели проекта
 
